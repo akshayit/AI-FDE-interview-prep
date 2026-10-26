@@ -1,0 +1,9 @@
+flowchart LR
+  A["Call recording uploaded to S3"] --> B["Lambda: start transcription"]
+  B --> C["Speech-to-text with diarization"]
+  C --> D["Store transcript"]
+  D --> E["SQS queue"]
+  E --> F["Lambda: summarize with LLM and RAG"]
+  F --> G["Save insights"]
+  G --> H["Notify and update dashboard"]
+  E -.-> I["Dead-letter queue"]

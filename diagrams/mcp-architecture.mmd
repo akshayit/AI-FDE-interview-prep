@@ -1,0 +1,12 @@
+flowchart LR
+  subgraph HOST["Host application"]
+    LLM["LLM"]
+    C1["MCP client 1"]
+    C2["MCP client 2"]
+  end
+  LLM --- C1
+  LLM --- C2
+  C1 -- stdio --> S1["MCP server: files"]
+  C2 -- HTTP with OAuth --> S2["MCP server: Jira"]
+  S1 --> R1["Local data"]
+  S2 --> R2["Tickets API"]

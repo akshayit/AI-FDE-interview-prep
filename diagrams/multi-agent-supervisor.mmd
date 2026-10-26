@@ -1,0 +1,12 @@
+flowchart TB
+  U["User request"] --> S["Supervisor agent"]
+  S --> A1["Research agent"]
+  S --> A2["Extraction agent"]
+  S --> A3["Validation agent"]
+  A1 --> S
+  A2 --> S
+  A3 --> S
+  S --> H{"Low confidence or high risk?"}
+  H -- yes --> HU["Human review"]
+  H -- no --> O["Final answer"]
+  HU --> O

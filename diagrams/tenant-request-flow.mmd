@@ -1,0 +1,6 @@
+flowchart LR
+  R["Request with JWT"] --> M["Tenant middleware"]
+  M --> Q["Data layer adds tenant filter"]
+  Q --> DB[("Postgres with row-level security")]
+  M --> U["usage_events: tenant, run, tokens, cost"]
+  M --> L["Per-tenant rate limit"]

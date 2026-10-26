@@ -1,0 +1,22 @@
+flowchart LR
+  subgraph LOC["Local prototype"]
+    L1["Ollama"]
+    L2["Qwen"]
+    L3["nomic-embed-text"]
+    L4["FAISS or Chroma"]
+    L5["LangChain"]
+  end
+  subgraph PROD["Production on Azure"]
+    P1["Azure OpenAI or AI Foundry"]
+    P2["GPT model"]
+    P3["text-embedding-3"]
+    P4["Azure AI Search"]
+    P5["LangChain or Semantic Kernel"]
+  end
+  L1 --> P1
+  L2 --> P2
+  L3 --> P3
+  L4 --> P4
+  L5 --> P5
+  P3 --> R["Re-index all documents"]
+  R --> V["Re-run golden set before release"]

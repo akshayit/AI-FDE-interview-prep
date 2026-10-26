@@ -1,0 +1,10 @@
+flowchart LR
+  A["Understand the workflow"] --> B["Define one measurable outcome"]
+  B --> C["Build a thin prototype"]
+  C --> D["Demo on real data"]
+  D --> E["Pilot with real users"]
+  E --> F{"Meets target?"}
+  F -- no --> C
+  F -- yes --> G["Harden for production"]
+  G --> H["Hand off and monitor"]
+  H --> I["Feed learnings to product"]

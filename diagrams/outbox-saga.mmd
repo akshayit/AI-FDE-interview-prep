@@ -1,0 +1,8 @@
+flowchart LR
+  O["Order service"] -- order and outbox row in one transaction --> DB[("Order DB")]
+  DB --> R["Outbox relay"]
+  R --> B["Message broker"]
+  B --> P["Payment service"]
+  B --> I["Inventory service"]
+  P -- payment failed event --> B
+  B -- compensate --> O

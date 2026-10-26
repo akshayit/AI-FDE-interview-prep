@@ -1,0 +1,19 @@
+flowchart TB
+  subgraph ING["Ingestion"]
+    direction LR
+    A["Documents: PDF, DOCX, CSV"] --> B["Parse and clean"]
+    B --> C["Chunk with metadata"]
+    C --> D["Embed"]
+    D --> E[("Vector store and keyword index")]
+  end
+  subgraph QRY["Query"]
+    direction LR
+    Q["User question"] --> R["Rewrite query"]
+    R --> S["Hybrid retrieval with access filters"]
+    S --> T["Rerank top results"]
+    T --> U["Build prompt with sources"]
+    U --> V["LLM answers with citations"]
+    V --> W["Validate and return"]
+    W --> X["Trace and evaluation logs"]
+  end
+  ING -- indexed chunks --> QRY

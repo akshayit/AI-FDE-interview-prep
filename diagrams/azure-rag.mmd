@@ -1,0 +1,14 @@
+flowchart LR
+  U["Chat UI"] --> G["FastAPI gateway: auth, guardrails"]
+  G --> A["Agent loop: max steps, token budget"]
+  A --> S["Azure AI Search: hybrid and role filter"]
+  A --> L["Azure OpenAI"]
+  A --> T["Business APIs: timesheet, tickets"]
+  subgraph PLAT["Platform under every box"]
+    K["Key Vault and Managed Identity"]
+    M["App Insights traces and cost"]
+    E["Evaluation set as release gate"]
+  end
+  G -.-> K
+  A -.-> M
+  A -.-> E

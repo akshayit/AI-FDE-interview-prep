@@ -1,0 +1,11 @@
+flowchart LR
+  G["Git push"] --> B["Build and test"]
+  B --> S["Scan image"]
+  S --> R["Push to registry"]
+  R --> H["GitOps repo update"]
+  H --> IN
+  subgraph K8S["Kubernetes cluster"]
+    IN["Ingress"] --> SV["Service"]
+    SV --> D["Deployment pods"]
+    D --> HPA["HPA or KEDA autoscaling"]
+  end

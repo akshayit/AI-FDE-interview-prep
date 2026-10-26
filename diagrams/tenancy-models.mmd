@@ -1,0 +1,17 @@
+flowchart TB
+  R["Request with token"] --> T["Resolve tenant from token claim"]
+  T --> POOL
+  T --> BRIDGE
+  T --> SILO
+  subgraph POOL["Pool: shared app and database"]
+    P1["Tenant A rows"]
+    P2["Tenant B rows"]
+  end
+  subgraph BRIDGE["Bridge: shared app, schema per tenant"]
+    B1["Schema A"]
+    B2["Schema B"]
+  end
+  subgraph SILO["Silo: separate stack per tenant"]
+    S1["Stack A with own database"]
+    S2["Stack B with own database"]
+  end

@@ -1,0 +1,6 @@
+flowchart LR
+  E["Events: leads, orders"] --> PS["Redis pub/sub"]
+  PS --> WS["Node server: WebSocket or SSE"]
+  WS --> UI["React dashboard"]
+  UI --> RQ["Server-state cache"]
+  API["REST API for history"] --> RQ

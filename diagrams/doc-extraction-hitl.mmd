@@ -1,0 +1,12 @@
+flowchart LR
+  A["Upload to Blob Storage"] --> B["Queue job"]
+  B --> C["Worker: extract text and fields"]
+  C --> D["LLM structured output"]
+  D --> E["Schema validation and confidence score"]
+  E --> F{"Confidence high?"}
+  F -- yes --> G["Rules engine"]
+  F -- no --> H["Exception queue"]
+  H --> I["Reviewer edits"]
+  I --> G
+  G --> J["Save result and audit log"]
+  I -.-> K["Labeled examples for evaluation"]

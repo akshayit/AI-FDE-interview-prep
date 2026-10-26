@@ -1,0 +1,12 @@
+flowchart TB
+  S["Start"] --> P["Plan node"]
+  P --> T["Tool node"]
+  T --> C{"Risky action?"}
+  C -- yes --> I["Interrupt: wait for human approval"]
+  C -- no --> N["Next step"]
+  I -- approved --> N
+  I -- rejected --> P
+  N --> D{"Done or max steps?"}
+  D -- no --> P
+  D -- yes --> E["End"]
+  CP[("Checkpointer saves state")] -.-> T

@@ -1,0 +1,12 @@
+flowchart LR
+  A["Analyst: brief"] --> B["PM: PRD"]
+  B --> C["Architect: architecture"]
+  C --> D["Scrum master: story files"]
+  D --> E["Developer: implement story"]
+  E --> F["QA: review"]
+  F -- changes needed --> E
+  F -- approved --> G["Merge"]
+  H["Human approval gates"] -.-> B
+  H -.-> C
+  H -.-> D
+  H -.-> F

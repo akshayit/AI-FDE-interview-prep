@@ -1,0 +1,8 @@
+flowchart LR
+  C["Client"] --> A["FastAPI: validate request"]
+  A --> Q["Queue"]
+  A -- job id --> C
+  Q --> W["Worker"]
+  W --> DB[("Postgres")]
+  C -- poll status --> A
+  A --> DB

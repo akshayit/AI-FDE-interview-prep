@@ -1,0 +1,14 @@
+flowchart LR
+  A["Client apps"] --> B["LLM gateway API"]
+  B --> C["Auth and tenant limits"]
+  C --> D{"Cache hit?"}
+  D -- yes --> R["Return cached answer"]
+  D -- no --> E["Model router"]
+  E -- simple task --> F["Small model SLM"]
+  E -- complex task --> G["Large model LLM"]
+  F --> H{"Confident?"}
+  H -- no --> G
+  H -- yes --> I["Validate output schema"]
+  G --> I
+  I --> J["Usage log: tokens, cost, prompt version"]
+  J --> R

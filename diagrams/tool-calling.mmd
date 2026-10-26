@@ -1,0 +1,14 @@
+sequenceDiagram
+  participant U as User
+  participant A as App
+  participant M as LLM
+  participant T as Tool
+  U->>A: Question
+  A->>M: Messages plus tool schemas
+  M-->>A: Tool call with arguments
+  A->>A: Validate arguments
+  A->>T: Execute tool
+  T-->>A: Result
+  A->>M: Tool result
+  M-->>A: Final answer
+  A-->>U: Answer

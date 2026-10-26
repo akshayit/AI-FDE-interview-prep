@@ -1,0 +1,9 @@
+flowchart LR
+  A["Request"] --> B["Middleware"]
+  B --> C["Guards"]
+  C --> D["Interceptors before"]
+  D --> E["Pipes"]
+  E --> F["Controller handler"]
+  F --> G["Interceptors after"]
+  G --> H["Response"]
+  F -.-> X["Exception filters"]

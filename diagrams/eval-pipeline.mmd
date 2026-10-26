@@ -1,0 +1,8 @@
+flowchart LR
+  A["Prompt or model change"] --> B["Run golden set in CI"]
+  B --> C{"Scores above threshold?"}
+  C -- no --> D["Block release"]
+  C -- yes --> E["Canary rollout"]
+  E --> F["Production traces and feedback"]
+  F --> G["New failures added to golden set"]
+  G --> B
